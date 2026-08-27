@@ -3147,64 +3147,59 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
 })();
 </script>
 
-<script id="mustafa-performance-v4">
-/* MUSTAFA.sys performance patch v4 */
-(()=> {
-  // Batch pointer updates into one paint cycle
-  let pointerTick = false;
-  let px = 0, py = 0;
-  const move = (e)=>{
-    px=e.clientX; py=e.clientY;
-    if(pointerTick) return;
-    pointerTick=true;
-    requestAnimationFrame(()=>{
-      pointerTick=false;
-      const glow=document.querySelector('.cursor-glow');
-      const dot=document.querySelector('.cursor-dot');
-      const ring=document.querySelector('.cursor-ring');
-      if(glow) glow.style.transform=`translate3d(${px}px,${py}px,0)`;
-      if(dot) dot.style.transform=`translate3d(${px}px,${py}px,0)`;
-      if(ring) ring.style.transform=`translate3d(${px}px,${py}px,0)`;
-    });
-  };
-  window.addEventListener('pointermove',move,{passive:true});
+<!-- MUSTAFA.sys Performance v5 main-thread optimization -->
+<script id="mustafa-performance-v5">
+(() => {
+  // Keep visual identity, delay expensive background work.
+  const idle = window.requestIdleCallback || ((cb)=>setTimeout(cb,1200));
 
-  // Pause expensive visuals while scrolling
-  let scrollFrame=0;
-  window.addEventListener('scroll',()=>{
-    if(scrollFrame) return;
-    scrollFrame=requestAnimationFrame(()=>{
-      scrollFrame=0;
-      document.documentElement.classList.add('fast-scroll');
-      clearTimeout(window.__mustafaScrollStop);
-      window.__mustafaScrollStop=setTimeout(()=>{
-        document.documentElement.classList.remove('fast-scroll');
-      },120);
+  // Reduce expensive pointer updates.
+  let pointerQueued = false;
+  document.addEventListener('pointermove', (e) => {
+    if (pointerQueued) return;
+    pointerQueued = true;
+    requestAnimationFrame(() => {
+      pointerQueued = false;
+      document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+      document.documentElement.style.setProperty('--my', e.clientY + 'px');
     });
-  },{passive:true});
+  }, {passive:true});
 
-  // Avoid starting heavy effects before browser is idle
-  if('requestIdleCallback' in window){
-    requestIdleCallback(()=>document.documentElement.classList.add('effects-ready'),{timeout:2500});
-  } else {
-    setTimeout(()=>document.documentElement.classList.add('effects-ready'),2500);
-  }
+  // Pause costly effects while scrolling.
+  let scrollTick = false;
+  window.addEventListener('scroll', () => {
+    if (scrollTick) return;
+    scrollTick = true;
+    requestAnimationFrame(() => {
+      document.documentElement.classList.add('perf-scrolling');
+      scrollTick = false;
+      clearTimeout(window.__perfScrollTimer);
+      window.__perfScrollTimer = setTimeout(() => {
+        document.documentElement.classList.remove('perf-scrolling');
+      }, 120);
+    });
+  }, {passive:true});
+
+  idle(() => {
+    document.documentElement.classList.add('perf-idle-ready');
+  });
 })();
 </script>
-<style id="mustafa-performance-v4-css">
-.fast-scroll .aurora-layer,
-.fast-scroll .bg-grid,
-.fast-scroll .noise-overlay,
-.fast-scroll .glow-orb,
-.fast-scroll #particle-canvas{
-  animation-play-state:paused!important;
+<style id="mustafa-performance-v5-css">
+.perf-scrolling .cursor-glow,
+.perf-scrolling .cursor-ring,
+.perf-scrolling .ambient-glow,
+.perf-scrolling .noise-overlay {
+  opacity:.25!important;
 }
 @media (max-width:900px){
-  .cursor-glow,.cursor-dot,.cursor-ring,#particle-canvas{
-    display:none!important;
-  }
+ .perf-scrolling .bg-code-cloud,
+ .perf-scrolling .particle-canvas {
+   display:none!important;
+ }
 }
 </style>
+
 </body>
 </html><style>
 /* === V17 — VISUAL FIRST / LESS TEXT === */
