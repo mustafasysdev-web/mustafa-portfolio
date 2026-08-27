@@ -1579,6 +1579,107 @@ body.has-scrolled .scroll-cue{opacity:0!important;transform:translateX(-50%) tra
 .sound-toggle{backdrop-filter:blur(10px);}
 .sound-toggle::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;margin-inline-start:7px;background:var(--accent-primary);box-shadow:0 0 10px var(--accent-primary);animation:audioPulse 1.8s ease-in-out infinite;}
 @keyframes audioPulse{0%,100%{transform:scale(.75);opacity:.45}50%{transform:scale(1.15);opacity:1}}
+
+/* === MUSTAFA.sys Performance Layer === */
+@media (max-width: 900px), (pointer: coarse) {
+  .glow-orb,
+  .aurora-layer::before,
+  .aurora-layer::after,
+  .hero-section::after,
+  .hero-section::before,
+  .featured-grid,
+  .dashboard-shell,
+  .dashboard-panel::after,
+  .tag-pill::after,
+  .interactive-card::after,
+  .float-chip,
+  .terminal-window::after,
+  .terminal-header .term-dot,
+  .signal-dot,
+  .arch-arrow,
+  .orbit-grid,
+  .bg-grid {
+    animation: none !important;
+  }
+
+  .cursor-glow,
+  .cursor-ring,
+  .cursor-dot {
+    display:none !important;
+  }
+
+  body { cursor:auto !important; }
+
+  .interactive-card,
+  .architecture-card,
+  .architecture-diagram,
+  .code-lab,
+  .runtime-console {
+    backdrop-filter:none !important;
+  }
+}
+
+.glow-orb {
+  animation-play-state: paused;
+  will-change:auto;
+}
+
+.aurora-layer {
+  filter:none !important;
+  opacity:.35 !important;
+}
+
+body::before {
+  animation:none !important;
+}
+
+.interactive-card::after {
+  animation:none !important;
+  filter:none !important;
+}
+
+.interactive-card:hover {
+  box-shadow:0 18px 35px rgba(0,0,0,.35) !important;
+}
+
+.dashboard-shell {
+  animation:none !important;
+}
+
+.bars span {
+  animation:none !important;
+}
+
+.reveal {
+  transition-duration:.45s !important;
+  transform:translateY(20px) scale(1) !important;
+}
+
+.hero-title,
+.gradient-text {
+  animation:none !important;
+}
+
+.gradient-text {
+  background-size:100% 100% !important;
+}
+
+.status-badge {
+  animation:none !important;
+}
+
+.terminal-window,
+.project-thumb,
+.interactive-card,
+.language-card,
+.metric-card {
+  transition-duration:.2s !important;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width:901px) {
+  .reveal.active { transform:none !important; }
+}
+
 </style>
 
 <style id="v18-codeverse-overrides">
@@ -2491,7 +2592,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
             runtimeClock.textContent=d.toLocaleTimeString([], {hour12:false});
         }
         updateRuntimeClock();
-        setInterval(updateRuntimeClock,1000);
+        setInterval(updateRuntimeClock,10000);
 
         // Count-up reveals for the metric numbers.
         const metricNumbers=document.querySelectorAll('.metric-number');
@@ -2628,7 +2729,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
         const liveLabels = document.querySelectorAll('.core-status, .status-mini');
         setInterval(()=>{
             liveLabels.forEach(el=>el.style.opacity = el.style.opacity === '0.55' ? '1' : '0.55');
-        }, 1400);
+        }, 5000);
 
     
 // === V16 motion controller ===
@@ -3046,7 +3147,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
 }
 </style>
 <script>
-/* === V17 Visual-first micro interactions === */
+/* === V17 Visual-first micro interactions (optimized) === */
 (() => {
   const pointerTargets = document.querySelectorAll('.metric-card,.language-card,.architecture-card,.architecture-diagram,.project-card');
   pointerTargets.forEach(el => {
