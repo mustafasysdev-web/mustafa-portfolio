@@ -1886,6 +1886,30 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
 .performance-idle .bg-grid,.performance-idle .hero-section::before,
 .performance-idle .hero-section::after{animation-play-state:paused!important;}
 </style>
+
+<style id="mustafa-performance-v6-motion">
+/* Performance v6: compositor friendly motion */
+.core-beam, .beam-1, .beam-2, .beam-3 {
+  will-change: transform, opacity;
+}
+/* Avoid expensive filter animation repaint storms */
+.core-beam {
+  animation-timing-function: linear !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .core-beam, .glow-orb, .float-chip {
+    animation-fill-mode: both;
+  }
+}
+@media (max-width: 900px) {
+  .core-beam, .glow-orb, .bg-code-cloud span {
+    animation-play-state: paused !important;
+  }
+  .glass-card, .architecture-card, .interactive-card {
+    backdrop-filter: blur(10px) !important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
