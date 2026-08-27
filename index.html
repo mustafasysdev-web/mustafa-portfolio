@@ -1875,6 +1875,17 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
  body.loaded .hero-section::after, body.loaded .hero-section::before, body.loaded .orbit-grid, body.loaded .aurora-layer::before, body.loaded .aurora-layer::after{animation-play-state:running;}
 }
 </style>
+
+<!-- MUSTAFA.sys Performance v3 runtime optimizations -->
+<style>
+@media (max-width: 900px){
+ .aurora-layer,.cursor-glow,#particle-canvas{display:none!important;}
+ .architecture-card,.architecture-diagram,.interactive-card,.code-lab,.runtime-console{backdrop-filter:none!important;}
+}
+.performance-idle .aurora-layer::before,.performance-idle .aurora-layer::after,
+.performance-idle .bg-grid,.performance-idle .hero-section::before,
+.performance-idle .hero-section::after{animation-play-state:paused!important;}
+</style>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -2840,7 +2851,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
   const evt = document.getElementById('evtCount');
   const lat = document.getElementById('latCount');
   let tick = 0;
-  const runtimeTimer = window.setInterval(() => {
+  const runtimeTimer = window.setTimeout(() => {
     if (!evt || !lat) return;
     tick++;
     const n = 84210 + Math.round(Math.sin(tick/2.5)*680 + (Math.random()*320-160));
@@ -2859,7 +2870,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
   let ambientBus = null;
   let ambienceFilter = null;
   let started = false;
-  let armed = true;
+  let armed = false;
   let lastHover = 0;
   let lastSection = 0;
   let scrollVelocity = 0;
@@ -3122,6 +3133,17 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
       });
     }
   },{passive:true});
+})();
+</script>
+
+<script id="mustafa-v3-controller">
+(()=>{
+ const start=()=>{
+   document.documentElement.classList.remove('performance-idle');
+ };
+ document.documentElement.classList.add('performance-idle');
+ window.addEventListener('load',()=>setTimeout(start,1800),{once:true});
+ ['pointerdown','scroll','keydown'].forEach(e=>window.addEventListener(e,start,{once:true,passive:true}));
 })();
 </script>
 </body>
