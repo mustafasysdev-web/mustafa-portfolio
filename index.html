@@ -3146,6 +3146,65 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
  ['pointerdown','scroll','keydown'].forEach(e=>window.addEventListener(e,start,{once:true,passive:true}));
 })();
 </script>
+
+<script id="mustafa-performance-v4">
+/* MUSTAFA.sys performance patch v4 */
+(()=> {
+  // Batch pointer updates into one paint cycle
+  let pointerTick = false;
+  let px = 0, py = 0;
+  const move = (e)=>{
+    px=e.clientX; py=e.clientY;
+    if(pointerTick) return;
+    pointerTick=true;
+    requestAnimationFrame(()=>{
+      pointerTick=false;
+      const glow=document.querySelector('.cursor-glow');
+      const dot=document.querySelector('.cursor-dot');
+      const ring=document.querySelector('.cursor-ring');
+      if(glow) glow.style.transform=`translate3d(${px}px,${py}px,0)`;
+      if(dot) dot.style.transform=`translate3d(${px}px,${py}px,0)`;
+      if(ring) ring.style.transform=`translate3d(${px}px,${py}px,0)`;
+    });
+  };
+  window.addEventListener('pointermove',move,{passive:true});
+
+  // Pause expensive visuals while scrolling
+  let scrollFrame=0;
+  window.addEventListener('scroll',()=>{
+    if(scrollFrame) return;
+    scrollFrame=requestAnimationFrame(()=>{
+      scrollFrame=0;
+      document.documentElement.classList.add('fast-scroll');
+      clearTimeout(window.__mustafaScrollStop);
+      window.__mustafaScrollStop=setTimeout(()=>{
+        document.documentElement.classList.remove('fast-scroll');
+      },120);
+    });
+  },{passive:true});
+
+  // Avoid starting heavy effects before browser is idle
+  if('requestIdleCallback' in window){
+    requestIdleCallback(()=>document.documentElement.classList.add('effects-ready'),{timeout:2500});
+  } else {
+    setTimeout(()=>document.documentElement.classList.add('effects-ready'),2500);
+  }
+})();
+</script>
+<style id="mustafa-performance-v4-css">
+.fast-scroll .aurora-layer,
+.fast-scroll .bg-grid,
+.fast-scroll .noise-overlay,
+.fast-scroll .glow-orb,
+.fast-scroll #particle-canvas{
+  animation-play-state:paused!important;
+}
+@media (max-width:900px){
+  .cursor-glow,.cursor-dot,.cursor-ring,#particle-canvas{
+    display:none!important;
+  }
+}
+</style>
 </body>
 </html><style>
 /* === V17 — VISUAL FIRST / LESS TEXT === */
