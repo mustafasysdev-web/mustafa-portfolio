@@ -1862,6 +1862,19 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
   "description": "Systems Architect building modern web solutions and scalable systems."
 }
 </script>
+
+<style id="mustafa-performance-v2">
+/* Performance layer - keeps MUSTAFA.sys visuals */
+@media (max-width:768px){
+ #particle-canvas,.cursor-glow,.cursor-dot,.cursor-ring,.aurora-layer{display:none!important;}
+ .interactive-card,.architecture-card,.architecture-diagram,.code-lab,.runtime-console{backdrop-filter:none!important;}
+ *{animation-duration:.001ms!important;}
+}
+@media (prefers-reduced-motion:no-preference){
+ .hero-section::after,.hero-section::before,.orbit-grid,.aurora-layer::before,.aurora-layer::after{animation-play-state:paused;}
+ body.loaded .hero-section::after, body.loaded .hero-section::before, body.loaded .orbit-grid, body.loaded .aurora-layer::before, body.loaded .aurora-layer::after{animation-play-state:running;}
+}
+</style>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -3091,6 +3104,26 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
 })();
 </script>
 
+
+<script id="mustafa-performance-v2-js">
+(function(){
+  const activate=()=>document.body.classList.add('loaded');
+  if('requestIdleCallback' in window){requestIdleCallback(activate,{timeout:1800});}
+  else setTimeout(activate,1200);
+  // Reduce expensive pointer effects during scrolling
+  let scrolling=false;
+  window.addEventListener('scroll',()=>{
+    if(!scrolling){
+      scrolling=true;
+      document.documentElement.classList.add('is-scrolling');
+      requestAnimationFrame(()=>{
+        scrolling=false;
+        document.documentElement.classList.remove('is-scrolling');
+      });
+    }
+  },{passive:true});
+})();
+</script>
 </body>
 </html><style>
 /* === V17 — VISUAL FIRST / LESS TEXT === */
