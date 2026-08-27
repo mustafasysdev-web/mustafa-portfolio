@@ -1886,30 +1886,6 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
 .performance-idle .bg-grid,.performance-idle .hero-section::before,
 .performance-idle .hero-section::after{animation-play-state:paused!important;}
 </style>
-
-<style id="mustafa-performance-v6-motion">
-/* Performance v6: compositor friendly motion */
-.core-beam, .beam-1, .beam-2, .beam-3 {
-  will-change: transform, opacity;
-}
-/* Avoid expensive filter animation repaint storms */
-.core-beam {
-  animation-timing-function: linear !important;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .core-beam, .glow-orb, .float-chip {
-    animation-fill-mode: both;
-  }
-}
-@media (max-width: 900px) {
-  .core-beam, .glow-orb, .bg-code-cloud span {
-    animation-play-state: paused !important;
-  }
-  .glass-card, .architecture-card, .interactive-card {
-    backdrop-filter: blur(10px) !important;
-  }
-}
-</style>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -1962,6 +1938,11 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
                 <div class="hero-actions">
                     <a href="#projects" class="btn-send magnetic" style="padding: 14px 28px; text-decoration: none; display: inline-flex; width: auto; align-items:center; justify-content:center;" data-key="btn_projects">View Projects</a>
                     <a href="#contact" class="hero-secondary magnetic" data-key="btn_contact">Let's Talk <span>↗</span></a>
+                </div>
+                <div class="hero-value-grid">
+                    <div class="hero-value-item"><b>FULL-STACK</b><span data-key="hero_value_1">Frontend + Backend</span></div>
+                    <div class="hero-value-item"><b>SYSTEMS</b><span data-key="hero_value_2">Architecture + APIs</span></div>
+                    <div class="hero-value-item"><b>DELIVERY</b><span data-key="hero_value_3">Performance + Deploy</span></div>
                 </div>
             </div>
 
@@ -2021,6 +2002,28 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
                     <div class="arch-node">API + Services</div><div class="arch-arrow">↓</div>
                     <div class="arch-node">Cache + Database</div><div class="arch-arrow">↓</div>
                     <div class="arch-node">Cloud / CI-CD / Monitoring</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="professional-focus-section">
+            <div class="section-header reveal">
+                <span class="sub-tag" data-key="about_tag"> PROFESSIONAL FOCUS</span>
+                <h2 data-key="about_title">Built to turn ideas into working systems.</h2>
+            </div>
+            <div class="professional-focus-grid">
+                <div class="focus-copy reveal">
+                    <p data-key="about_desc_1">I build modern web products across the frontend and backend, with a strong focus on clean structure, reliable APIs, responsive interfaces, and performance.</p>
+                    <p data-key="about_desc_2">My work combines product-focused UI with systems thinking — from component architecture and API design to deployment, observability, and practical optimization.</p>
+                    <div class="focus-actions">
+                        <a class="focus-link" href="#projects" data-key="about_projects_cta">Explore the work <span>↗</span></a>
+                        <a class="focus-link" href="mailto:mustafa.sys.dev@gmail.com" data-key="about_email_cta">Email me <span>↗</span></a>
+                    </div>
+                </div>
+                <div class="focus-proof reveal">
+                    <div class="focus-proof-row"><span>01</span><div><b data-key="proof_1_title">Product-minded development</b><small data-key="proof_1_desc">Interfaces that explain the product instead of just decorating it.</small></div></div>
+                    <div class="focus-proof-row"><span>02</span><div><b data-key="proof_2_title">Engineering discipline</b><small data-key="proof_2_desc">Reusable components, structured APIs, and maintainable code.</small></div></div>
+                    <div class="focus-proof-row"><span>03</span><div><b data-key="proof_3_title">Ready to collaborate</b><small data-key="proof_3_desc">Open to internships, freelance work, and real-world projects.</small></div></div>
                 </div>
             </div>
         </section>
@@ -2228,6 +2231,11 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
   </div>
 
   <div class="showcase-footer reveal"><span><b class="status-dot"></b> Interactive previews</span><span>Hover to explore • click a card to intensify</span></div>
+  <div class="project-proof-strip reveal">
+    <div><small data-key="project_proof_1_label">WHAT I BUILD</small><b data-key="project_proof_1">Modern web applications</b></div>
+    <div><small data-key="project_proof_2_label">HOW I THINK</small><b data-key="project_proof_2">Scalable systems &amp; clean architecture</b></div>
+    <div><small data-key="project_proof_3_label">WHAT MATTERS</small><b data-key="project_proof_3">Performance, security &amp; UX</b></div>
+  </div>
 </section>
 
         <!-- Contact Section -->
@@ -2241,6 +2249,11 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
                     <h3 style="font-size: 1.8rem; margin-bottom: 15px;" data-key="contact_box_title">Ready to collaborate?</h3>
                     <p style="color: var(--text-sub); line-height: 1.7;" data-key="contact_box_desc">Send a message and it will be delivered directly to my email inbox.</p>
                     <div class="contact-side-note"><span class="status-mini"></span><span data-key="availability_note">Currently available for select projects.</span></div>
+                    <div class="contact-direct-links">
+                        <a href="mailto:mustafa.sys.dev@gmail.com">mustafa.sys.dev@gmail.com</a>
+                        <a href="https://github.com/mustafasysdev-web" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                        <a href="https://www.linkedin.com/in/mostafa-ashraf-480841431/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                    </div>
                 </div>
                 <form action="https://formspree.io/f/xvkopprp" id="contact-form" method="POST">
                     <input type="text" name="name" data-placeholder="name_placeholder" placeholder="Your Name" class="form-input" required>
@@ -2280,6 +2293,27 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
                 hero_dynamic: "Digital Systems That Ship.",
                 hero_desc: "Full-Stack & Systems Engineer dedicated to crafting robust cloud architectures, high-performance backends, and sleek interactive frontends.",
                 btn_projects: "View Projects",
+                hero_value_1: "Frontend + Backend",
+                hero_value_2: "Architecture + APIs",
+                hero_value_3: "Performance + Deploy",
+                about_tag: " PROFESSIONAL FOCUS",
+                about_title: "Built to turn ideas into working systems.",
+                about_desc_1: "I build modern web products across the frontend and backend, with a strong focus on clean structure, reliable APIs, responsive interfaces, and performance.",
+                about_desc_2: "My work combines product-focused UI with systems thinking — from component architecture and API design to deployment, observability, and practical optimization.",
+                about_projects_cta: "Explore the work",
+                about_email_cta: "Email me",
+                proof_1_title: "Product-minded development",
+                proof_1_desc: "Interfaces that explain the product instead of just decorating it.",
+                proof_2_title: "Engineering discipline",
+                proof_2_desc: "Reusable components, structured APIs, and maintainable code.",
+                proof_3_title: "Ready to collaborate",
+                proof_3_desc: "Open to internships, freelance work, and real-world projects.",
+                project_proof_1_label: "WHAT I BUILD",
+                project_proof_1: "Modern web applications",
+                project_proof_2_label: "HOW I THINK",
+                project_proof_2: "Scalable systems & clean architecture",
+                project_proof_3_label: "WHAT MATTERS",
+                project_proof_3: "Performance, security & UX",
                 btn_contact: "Let's Talk",
                 hero_kicker: "FULL-STACK ENGINEER • SYSTEMS ARCHITECT",
                 metric_1_num: "99.99%", metric_1_label: "Target uptime mindset",
@@ -2342,6 +2376,27 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
                 hero_dynamic: "أنظمة واسعة النطاق.",
                 hero_desc: "مهندس نظم وتطبيقات متكاملة (Full-Stack)، متخصص في بناء بنى سحابية قوية، أنظمة خلفية عالية الأداء واجهات تفاعلية مذهلة.",
                 btn_projects: "عرض المشاريع",
+                hero_value_1: "الواجهة + الخلفية",
+                hero_value_2: "المعمارية + الـ APIs",
+                hero_value_3: "الأداء + النشر",
+                about_tag: " التركيز المهني",
+                about_title: "أحوّل الأفكار إلى أنظمة تعمل فعليًا.",
+                about_desc_1: "أبني منتجات ويب حديثة عبر الواجهة الأمامية والخلفية، مع تركيز قوي على البنية النظيفة، وواجهات البرمجة الموثوقة، والتجاوب، والأداء.",
+                about_desc_2: "أجمع بين تجربة المستخدم والتفكير كنظم — من معمارية المكونات وتصميم الـ APIs إلى النشر والمراقبة والتحسين العملي.",
+                about_projects_cta: "استكشف الأعمال",
+                about_email_cta: "راسلني",
+                proof_1_title: "تطوير بعقلية المنتج",
+                proof_1_desc: "واجهات توضّح المنتج بدلًا من أن تكون مجرد شكل جميل.",
+                proof_2_title: "انضباط هندسي",
+                proof_2_desc: "مكونات قابلة لإعادة الاستخدام، APIs منظمة، وكود قابل للصيانة.",
+                proof_3_title: "جاهز للتعاون",
+                proof_3_desc: "منفتح على التدريب، والعمل الحر، والمشاريع الواقعية.",
+                project_proof_1_label: "ماذا أبني",
+                project_proof_1: "تطبيقات ويب حديثة",
+                project_proof_2_label: "كيف أفكر",
+                project_proof_2: "أنظمة قابلة للتوسع ومعمارية نظيفة",
+                project_proof_3_label: "ما يهم",
+                project_proof_3: "الأداء والأمان وتجربة المستخدم",
                 skills_tag: " الكفاءات والخبرات الأساسية",
                 skills_title: "المهارات التقنية المتقدمة",
                 lang_tag: " اللغات وبيئة التشغيل",
@@ -3171,59 +3226,14 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
 })();
 </script>
 
-<!-- MUSTAFA.sys Performance v5 main-thread optimization -->
-<script id="mustafa-performance-v5">
-(() => {
-  // Keep visual identity, delay expensive background work.
-  const idle = window.requestIdleCallback || ((cb)=>setTimeout(cb,1200));
-
-  // Reduce expensive pointer updates.
-  let pointerQueued = false;
-  document.addEventListener('pointermove', (e) => {
-    if (pointerQueued) return;
-    pointerQueued = true;
-    requestAnimationFrame(() => {
-      pointerQueued = false;
-      document.documentElement.style.setProperty('--mx', e.clientX + 'px');
-      document.documentElement.style.setProperty('--my', e.clientY + 'px');
-    });
-  }, {passive:true});
-
-  // Pause costly effects while scrolling.
-  let scrollTick = false;
-  window.addEventListener('scroll', () => {
-    if (scrollTick) return;
-    scrollTick = true;
-    requestAnimationFrame(() => {
-      document.documentElement.classList.add('perf-scrolling');
-      scrollTick = false;
-      clearTimeout(window.__perfScrollTimer);
-      window.__perfScrollTimer = setTimeout(() => {
-        document.documentElement.classList.remove('perf-scrolling');
-      }, 120);
-    });
-  }, {passive:true});
-
-  idle(() => {
-    document.documentElement.classList.add('perf-idle-ready');
-  });
-})();
-</script>
-<style id="mustafa-performance-v5-css">
-.perf-scrolling .cursor-glow,
-.perf-scrolling .cursor-ring,
-.perf-scrolling .ambient-glow,
-.perf-scrolling .noise-overlay {
-  opacity:.25!important;
-}
-@media (max-width:900px){
- .perf-scrolling .bg-code-cloud,
- .perf-scrolling .particle-canvas {
-   display:none!important;
- }
-}
+<style id="career-ready-layer">
+.hero-value-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:720px;margin-top:24px}.hero-value-item{padding:12px 14px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.025)}.hero-value-item b{display:block;font:700 .62rem 'Fira Code',monospace;letter-spacing:.12em;color:#67e8f9;margin-bottom:5px}.hero-value-item span{display:block;color:#9aa9ba;font-size:.74rem}
+.professional-focus-section{position:relative}.professional-focus-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px}.focus-copy,.focus-proof{border:1px solid rgba(255,255,255,.075);border-radius:22px;background:linear-gradient(150deg,rgba(36,10,24,.72),rgba(16,6,12,.86));padding:30px}.focus-copy p{color:var(--text-sub);line-height:1.8;max-width:720px}.focus-copy p+p{margin-top:14px}.focus-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}.focus-link{display:inline-flex;align-items:center;gap:8px;color:#eff8ff;text-decoration:none;font-weight:700}.focus-link span{transition:transform .25s}.focus-link:hover{color:#52e6ff}.focus-link:hover span{transform:translateX(4px)}
+.focus-proof{display:grid;gap:10px}.focus-proof-row{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;padding:14px;border:1px solid rgba(255,255,255,.055);border-radius:14px;background:rgba(255,255,255,.02)}.focus-proof-row>span{font:700 .72rem 'Fira Code',monospace;color:#ff74b5;padding-top:2px}.focus-proof-row b{display:block;font-size:.98rem;margin-bottom:4px}.focus-proof-row small{display:block;color:#8e9aaa;line-height:1.55}
+.project-proof-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.project-proof-strip>div{padding:16px;border:1px solid rgba(255,255,255,.065);border-radius:14px;background:rgba(255,255,255,.018)}.project-proof-strip small{display:block;font:700 .6rem 'Fira Code',monospace;letter-spacing:.12em;color:#7dd3fc;margin-bottom:7px}.project-proof-strip b{display:block;font-size:.84rem;color:#eef7ff}
+.contact-direct-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.contact-direct-links a{color:#bfefff;text-decoration:none;font:600 .73rem 'Fira Code',monospace;padding:8px 10px;border:1px solid rgba(82,230,255,.12);border-radius:9px;background:rgba(82,230,255,.035)}.contact-direct-links a:hover{border-color:rgba(82,230,255,.35);color:#fff}
+@media(max-width:900px){.hero-value-grid{grid-template-columns:1fr}.professional-focus-grid{grid-template-columns:1fr}.project-proof-strip{grid-template-columns:1fr}}@media(max-width:620px){.hero-value-grid{gap:8px}.hero-value-item{padding:10px 12px}.focus-copy,.focus-proof{padding:22px}.project-proof-strip{gap:8px}}
 </style>
-
 </body>
 </html><style>
 /* === V17 — VISUAL FIRST / LESS TEXT === */
