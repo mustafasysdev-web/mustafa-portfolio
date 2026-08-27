@@ -39,7 +39,10 @@
 <meta name="twitter:description" content="Systems Architect portfolio showcasing modern projects.">
 
 <meta name="twitter:image" content="https://mustafasys.vercel.app/assets/preview.png">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <style>
         :root {
             --bg-dark: #050816;
@@ -1680,6 +1683,31 @@ body::before {
   .reveal.active { transform:none !important; }
 }
 
+
+/* === MUSTAFA.sys Performance Layer === */
+@media (max-width: 900px){
+  .aurora-layer,
+  .cursor-glow,
+  .cursor-dot,
+  .cursor-ring,
+  .noise-overlay { display:none !important; }
+  .glow-orb { animation:none !important; filter:blur(80px); }
+  .hero-section::after,
+  .hero-section::before,
+  .featured-grid,
+  .dashboard-shell,
+  .dashboard-panel::after,
+  .interactive-card::after,
+  .tag-pill::after,
+  .arch-node::after { animation:none !important; }
+  .interactive-card,.architecture-card,.architecture-diagram { backdrop-filter:blur(6px); }
+}
+@media (prefers-reduced-motion:no-preference){
+  .reveal { transition-duration:.45s; }
+}
+@media (prefers-reduced-motion: reduce){
+  * { animation-duration:1ms!important; }
+}
 </style>
 
 <style id="v18-codeverse-overrides">
@@ -2727,9 +2755,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
         }
         // Tiny live heartbeat for code-centric feel.
         const liveLabels = document.querySelectorAll('.core-status, .status-mini');
-        setInterval(()=>{
-            liveLabels.forEach(el=>el.style.opacity = el.style.opacity === '0.55' ? '1' : '0.55');
-        }, 5000);
+      liveLabels.forEach(el=>el.style.opacity = "1");
 
     
 // === V16 motion controller ===
@@ -2801,7 +2827,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;op
   const evt = document.getElementById('evtCount');
   const lat = document.getElementById('latCount');
   let tick = 0;
-  setInterval(() => {
+  const runtimeTimer = window.setInterval(() => {
     if (!evt || !lat) return;
     tick++;
     const n = 84210 + Math.round(Math.sin(tick/2.5)*680 + (Math.random()*320-160));
